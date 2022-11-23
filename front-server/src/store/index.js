@@ -17,6 +17,7 @@ export default new Vuex.Store({
   state: {
     // isLoggedIn: !!this.getItem("token"),
     emptySearchbarbool: true,
+    issearching: false,
     articles: [],
     token: null,
     username: '',
@@ -50,10 +51,13 @@ export default new Vuex.Store({
       router.push({ name: 'HomeView' })
     },
     
-    //state에 있는 boolean값을 반전-> watch를 통해서 검색창을 비워줄것임. 😀
+    //state에 있는 boolean값을 반전-> watch를 통해서 검색창을 비워줄것임. 😀 쓸모없는로직됨. 문제생길까 싶어 남겨둠.
     emptySearchbar (state) {
-      console.log('hi')
+      // console.log('hi')
       state.emptySearchbarbool = state.emptySearchbarbool ? false : true
+    },
+    changeSearchingState(state) {
+      state.issearching = !state.issearching
     }
   },
   actions: {
@@ -108,7 +112,17 @@ export default new Vuex.Store({
           // 여기서 유저네임, 닉네임을 스토어로 보냄. 😀
           this.state.username = payload.username
           this.state.nickname = res.data.nickname
-          this.state.image_select= res.data.image_select
+          axios({
+            method: 'get',
+            url: `${API_URL}/profile/${payload.username}/`,
+          })
+            .then((res) => {
+              context.state.nickname = res.data.nickname
+              context.state.image_select = res.data.image_select
+              // console.log(context)
+              // 유저네임, 패스워드를 줘서 로그인을 하게 되면, 장고에서 nickname, image_select를 시리얼라이징해서 보내줄거임. 😊 아래 문제 해결!
+            })
+          // this.state.image_select= res.data.image_select
           // image_select관련 다 잘못되었음. 기본모델은 나한테 유저정보를 주지않음. created 이용해서 백으로 신호보내서 따로 시리얼라이저로 받은걸 처리해야함. 😥😣
           console.log(this.state.username)
           console.log(this.state.image_select)

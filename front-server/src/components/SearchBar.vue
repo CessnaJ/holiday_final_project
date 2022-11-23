@@ -1,8 +1,9 @@
 <template>
   <div>
-    <!-- <input type="text" @input="typing" :value="getSearchmovies(value)" placeholder="Search Movies by Title" /> -->
-    <input type="text" class="searchbox" v-model="input" v-on:input="getSearchmovies(input)" placeholder="Search Movies by Title" />
-    <div class="container">
+    <input type="text" :value="input" @input="input=$event.target.value; getSearchmovies(input)" placeholder="Search Movies by Title" />
+    <!-- <span>{{input}}</span> -->
+    <!-- <input type="text" class="searchbox" v-model="input" v-on:input="getSearchmovies(input)" placeholder="Search Movies by Title" /> -->
+    <div class="container" v-if="$store.state.issearching">
       <div class="item fruit card" v-for="(movie, index) in movies" :key="index">
         <!-- <p>{{ movie }}</p> -->
         <img class ="" :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`" @click="movieDetail(movie); emptySearchbox()"/>
@@ -41,7 +42,9 @@ export default {
       console.log('hi')
       this.emptySearchbox()
       return this.$store.state.emptySearchbarbool ? 1 : 0
-    }
+    },
+
+
   },
   
   data() {
@@ -56,6 +59,9 @@ export default {
   },
 
   watch:{
+    input() {
+      this.$store.state.issearching
+    }
     
   },
 
@@ -70,6 +76,9 @@ export default {
     },
 
     getSearchmovies(input) {
+      console.log(this.input)
+      this.$store.state.issearching = true
+
       axios({
         method: 'get',
         url: `${this.API_URL}/movies/search/`,

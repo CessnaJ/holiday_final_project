@@ -3,25 +3,33 @@
     <nav v-if="!isLoggedIn">
       <!-- 로그인 안된상태 -->
       <router-link :to="{ name: 'HomeView' }">
-        <span @click="linkClick">Today's Movie</span>
+        <span @click="changeSearchingState">Today's Movie</span>
       </router-link> | 
       
-      <router-link :to="{ name: 'SignUpView' }">SignUp</router-link> | 
+      <router-link :to="{ name: 'SignUpView' }">
+        <span @click="changeSearchingState">SignUp</span>
+      </router-link> | 
       
-      <router-link :to="{ name: 'LogInView' }">Log In</router-link> |
+      <router-link :to="{ name: 'LogInView' }">
+        <span @click="changeSearchingState">Log In</span>
+      </router-link> |
       
     </nav>
     <nav v-else>
       <!-- 로그인 된 상태 -->
       <router-link :to="{ name: 'HomeView' }">
-        <span @click="linkClick">Today's Movie</span>
+        <span @click="changeSearchingState">Today's Movie</span>
       </router-link> |
       
-      <span>Welcome {{$store.state.username}}</span> |
+      <span>Welcome {{$store.state.nickname}} {{$store.state.image_select}}</span> |
       
-      <router-link :to="{ name: 'MyProfileView' }">My Profile</router-link> | 
+      <router-link :to="{ name: 'MyProfileView' }">
+        <span @click="changeSearchingState">My Profile</span>
+      </router-link> | 
       <!-- 아래 로그아웃버튼신설 😀 -->
-      <button v-on:click.prevent="signOut()" >Sign Out</button>
+      <button v-on:click.prevent="signOut()" >
+        <span @click="changeSearchingState">Sign Out</span>
+      </button>
     </nav>
     <SearchBar/>
     
@@ -112,6 +120,10 @@ export default {
           linkClick() {
             console.log('link')
             this.$store.commit("emptySearchbar")
+          },
+          changeSearchingState() {
+            console.log('searchingstate')
+            this.$store.commit("changeSearchingState")
           }
 
     },

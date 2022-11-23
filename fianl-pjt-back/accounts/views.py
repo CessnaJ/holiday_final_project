@@ -15,8 +15,8 @@ User = get_user_model()
 # Create your views here.
 
 @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([TokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def profile(request, username):
     # username 받아서 profile 띄워줌.
     user = get_object_or_404(User, username=username)

@@ -16,7 +16,11 @@
 import axios from 'axios'
 export default {
     name: "HomeView",
-     data() {
+    props: {
+      
+    },
+
+    data() {
       return{
         movies: '',
         movieId: '',

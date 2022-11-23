@@ -3,9 +3,11 @@
     <h1>My profile page</h1>
     <!-- <button @click="logout">Logout</button> 필요없음.-->
     <div class="container">
-      <img v-if="$store.state.c" class="profileimg" :src="`@/assets/profile${imagesource}.png`" alt="">
+      <img v-if="$store.state.image_select" class="profileimg" :src="`@/assets/profile${imagesource}.png`" alt="">
       <img v-else class="profileimg" src="@/assets/profile2.png"/>
-      <span>{{$store.state.image_select}}누칼협오리 뜨면 문제있는거야.'s Profile{{$store.state.image_select}}</span>
+      <span>{{$store.state.nickname}}'s Profile{{$store.state.image_select}}번 이미지를 선택했음.</span>
+      <!-- <span>{{$store.state.issearching}}</span> -->
+      <!-- <span>{{$store.state.nickname}}</span> -->
     </div>
     
   </div>
@@ -50,6 +52,7 @@ export default {
       /* border: 1px solid black; */
       border-radius: 100%;
       width: 15rem;
+      height: 15rem;
       background: transparent;
         }
 
