@@ -1,13 +1,16 @@
 <template>
   <div id="app">
     <nav v-if="!isLoggedIn">
+      
       <router-link :to="{ name: 'HomeView' }">Today's movie</router-link> | 
       <router-link :to="{ name: 'SignUpView' }">SignUp</router-link> | 
       <router-link :to="{ name: 'LogInView' }">Log In</router-link> |
       
     </nav>
     <nav v-else>
+      
       <router-link :to="{ name: 'HomeView' }">Today's movie</router-link> |
+      <span>Welcome {{$store.state.username}}</span> |
       <router-link :to="{ name: 'MyProfileView' }">My Profile</router-link> | 
       <!-- 아래 로그아웃버튼신설 😀 -->
       <button v-on:click.prevent="signOut()" >Sign Out</button>
@@ -18,6 +21,11 @@
 </template>
 
 <style>
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -18,6 +18,7 @@ export default new Vuex.Store({
     // isLoggedIn: !!this.getItem("token"),
     articles: [],
     token: null,
+    username: ''
   },
   getters: {
     isLogin(state) {
@@ -31,11 +32,15 @@ export default new Vuex.Store({
     // 회원가입 && 로그인
     SAVE_TOKEN(state, token) {
       state.token = token
+      
       router.push({ name: 'HomeView' })
     },
     //여기서 로그아웃 받는다. 토큰없애고 홈뷰로 이동! 😀
     LOGOUT_USER(state) {
       state.token = null
+      //로그아웃하면 사용자 이름 없앰. 😀
+      state.username = ''
+      console.log(state.username)
       router.push({ name: 'HomeView' })
     }
   },
@@ -86,6 +91,9 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
+          // 여기서 유저네임을 스토어로 보냄. 😀
+          this.state.username = payload.username
+          console.log(this.state.username)
           // console.log(res)
           context.commit('SAVE_TOKEN', res.data.key)
         })

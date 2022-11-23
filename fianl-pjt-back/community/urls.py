@@ -28,13 +28,13 @@ urlpatterns = [
     # path('comments/', views.comment_list),
     # path('comments/<int:comment_pk>/', views.comment_detail),
     # path('articles/<int:article_pk>/comments/', views.comment_create),
-    path('', views.article_list),
-    path('create/', views.article_create), # 새 글 생성
-    path('delete/<int:article_pk>/', views.article_delete), # 글 삭제
-    path('<int:article_pk>/', views.article_detail),
-    path('comments/', views.comment_list),
-    path('comments/<int:comment_pk>/', views.comment_detail),
-    path('<int:article_pk>/comments/', views.comment_create),
+    path('', views.article_list), # get이면 리스트보여줌(article list), post면 새 글 생성(article create)
+    # path('create/', views.article_create), # 새 글 생성
+    # path('delete/<int:article_pk>/', views.article_delete), # 글 삭제
+    path('<int:article_pk>/', views.article_detail), # get이면 글정보 보여줌, put이면 수정요청. delete면 글 삭제
+    path('comments/', views.comment_list), # get으로 다 보내기
+    path('comments/<int:comment_pk>/', views.comment_detail), # get으로 해당 댓글만, delete로 댓글삭제, put으로 수정완료요청
+    path('<int:article_pk>/comments/', views.comment_create), # article_pk 달아서 post보내면 코멘트 생성됨.
 ]
 
 

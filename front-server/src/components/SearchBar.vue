@@ -3,9 +3,21 @@
     <!-- <input type="text" @input="typing" :value="getSearchmovies(value)" placeholder="Search Movies by Title" /> -->
     <input type="text" class="searchbox" v-model="input" v-on:input="getSearchmovies(input)" placeholder="Search Movies by Title" />
     <div class="container">
-      <div class="item fruit" v-for="(movie, index) in movies" :key="index">
+      <div class="item fruit card" v-for="(movie, index) in movies" :key="index">
         <!-- <p>{{ movie }}</p> -->
-        <img :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`" @click="movieDetail(movie)"/>
+        <img :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`" @click="movieDetail(movie); emptySearchbox()"/>
+        <div class="inner-content">
+            <span class="title">{{movie.title}}</span>
+            <hr>
+            <span class="overview">{{movie.overview.slice(0,100)}}...</span>
+        </div>
+        <!-- <div class="card">
+          <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/5AFKp85Bka4mQeaeVNs3evyMYYE.jpg" alt="">
+          
+        </div> -->
+
+
+
       </div>
     </div>
     <div class="item error" v-if="input&&!movies.length">
@@ -72,6 +84,9 @@ export default {
           console.log(err)
         })
     },
+    emptySearchbox() {
+      this.movies.splice(0, this.movies.length);
+    }
 
 //     filteredList() {
 //       return fruits.filter((fruit) =>
@@ -157,4 +172,57 @@ input {
 .container {
   display: flex;
 }
+
+
+
+
+
+/* 여기 아래가 카드 호버효과 */
+.card {
+  position: relative;
+  background: linear-gradient(180deg, #441DB2 0%, #0d0425 100%);
+  width: 13rem;
+  overflow: hidden;
+  box-shadow: 15px 15px 25px black;
+}
+.card img {
+  width: 100%;
+  height: auto;
+  transform: scale(1.1);
+  transition: all 0.25s linear;
+}
+.card:hover img {
+  opacity: 0.2;
+  transform: scale(1.25);
+}
+.card .inner-content {
+  width: 80%;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50%);
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transition: all 600ms ease;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card:hover .inner-content {
+  opacity: 1;
+  top: 50%;
+}
+.card .inner-content .title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.card .inner-content .overview {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+.card .inner-content hr {
+  border-top: 1px solid #f1f1f1;
+  width: 100%;
+}
+
 </style>

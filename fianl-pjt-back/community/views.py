@@ -133,21 +133,21 @@ def comment_create(request, article_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     
-# 게시글 생성
-@api_view(['POST'])
-def article_create(request):
-    # article = Article.objects.get(pk=article_pk)
-    # article = get_object_or_404(Article, pk=article_pk)
-    serializer = ArticleSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+# # 게시글 생성
+# @api_view(['POST'])
+# def article_create(request):
+#     # article = Article.objects.get(pk=article_pk)
+#     # article = get_object_or_404(Article, pk=article_pk)
+#     serializer = ArticleSerializer(data=request.data)
+#     if serializer.is_valid(raise_exception=True):
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 
-#게시글 삭제 성공시 204 반환
-@api_view(['DELETE'])
-def article_delete(request, article_pk):
-    article = get_object_or_404(Article, pk=article_pk)
-    article.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+# #게시글 삭제 성공시 204 반환
+# @api_view(['DELETE'])
+# def article_delete(request, article_pk):
+#     article = get_object_or_404(Article, pk=article_pk)
+#     article.delete()
+#     return Response(status=status.HTTP_204_NO_CONTENT)
