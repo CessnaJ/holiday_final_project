@@ -16,9 +16,12 @@ export default new Vuex.Store({
   ],
   state: {
     // isLoggedIn: !!this.getItem("token"),
+    emptySearchbarbool: true,
     articles: [],
     token: null,
-    username: ''
+    username: '',
+    nickname: '',
+    image_select:''
   },
   getters: {
     isLogin(state) {
@@ -40,8 +43,17 @@ export default new Vuex.Store({
       state.token = null
       //로그아웃하면 사용자 이름 없앰. 😀
       state.username = ''
+      state.nickname = ''
+      state.image_select= ''
+      
       console.log(state.username)
       router.push({ name: 'HomeView' })
+    },
+    
+    //state에 있는 boolean값을 반전-> watch를 통해서 검색창을 비워줄것임. 😀
+    emptySearchbar (state) {
+      console.log('hi')
+      state.emptySearchbarbool = state.emptySearchbarbool ? false : true
     }
   },
   actions: {
@@ -68,8 +80,10 @@ export default new Vuex.Store({
         url: `${API_URL}/accounts/signup/`,
         data: {
           username: payload.username,
+          nickname: payload.nickname,
           password1: payload.password1,
           password2: payload.password2,
+          image_select: payload.image_select
         }
       })
         .then((res) => {
@@ -91,10 +105,15 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          // 여기서 유저네임을 스토어로 보냄. 😀
+          // 여기서 유저네임, 닉네임을 스토어로 보냄. 😀
           this.state.username = payload.username
+          this.state.nickname = res.data.nickname
+          this.state.image_select= res.data.image_select
+          // image_select관련 다 잘못되었음. 기본모델은 나한테 유저정보를 주지않음. created 이용해서 백으로 신호보내서 따로 시리얼라이저로 받은걸 처리해야함. 😥😣
           console.log(this.state.username)
-          // console.log(res)
+          console.log(this.state.image_select)
+
+          console.log(res)
           context.commit('SAVE_TOKEN', res.data.key)
         })
         .catch((err) => {

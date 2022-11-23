@@ -12,7 +12,7 @@ class Movie(models.Model):
   # id = models.IntegerField(primary_key=True) # 영화id - pk
   title = models.CharField(max_length=100) # 제목
   original_title = models.CharField(max_length=100) # 원제목
-  # genres = models.CharField(max_length=100)
+  genres = models.CharField(max_length=100)
   overview = models.TextField(null=True, blank=True) # 없을수도 있음.
   release_date = models.CharField(max_length=100, null=True)
   vote_average = models.FloatField()

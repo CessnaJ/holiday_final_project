@@ -82,7 +82,8 @@ def search(request):
         #  |
         # Q(actors__actor__contains=keyword) |
         # Q(directors__director__contains=keyword)
-    ).order_by('-vote_count')[:5]
+    ).order_by('-vote_average')[:5]
+    # order_by('-vote_count')[:5]
     print(movies)
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)

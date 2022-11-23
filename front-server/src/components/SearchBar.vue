@@ -5,7 +5,7 @@
     <div class="container">
       <div class="item fruit card" v-for="(movie, index) in movies" :key="index">
         <!-- <p>{{ movie }}</p> -->
-        <img :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`" @click="movieDetail(movie); emptySearchbox()"/>
+        <img class ="" :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`" @click="movieDetail(movie); emptySearchbox()"/>
         <div class="inner-content">
             <span class="title">{{movie.title}}</span>
             <hr>
@@ -26,6 +26,7 @@
 
 <script>
 import axios from 'axios'
+
 // import { ref } from "vue"
 
 
@@ -35,7 +36,13 @@ export default {
   components: {
     
   },
-
+  computed: {
+    emptySearchbarbool() {
+      console.log('hi')
+      this.emptySearchbox()
+      return this.$store.state.emptySearchbarbool ? 1 : 0
+    }
+  },
   
   data() {
     return {
@@ -48,7 +55,10 @@ export default {
 
   },
 
-  
+  watch:{
+    
+  },
+
   methods: {
     // typing(e) {
     //   this.input = e.target.value
@@ -84,6 +94,7 @@ export default {
     emptySearchbox() {
       this.movies.splice(0, this.movies.length);
       this.input = ''
+      console.log('empty')
       // console.log(this.movies.length)
     }
 
@@ -94,11 +105,6 @@ export default {
 // }
   },
 
-  computed: {
-    // articles() {
-    //   return this.$store.state.articles
-    // }
-  }
 }
 
 </script>
@@ -149,7 +155,11 @@ input {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+
+
 .item {
+  /* 원래 width 350 */
+  /* 아래에 .card때문에 의미없네 css원칙 나중에 온게 우선권 가진다. */
   width: 350px;
   margin: 0 auto 10px auto;
   padding: 10px 20px;
@@ -164,11 +174,14 @@ input {
   cursor: pointer;
 }
 
+
+
 .error {
   background-color: tomato;
 }
 .container {
   display: flex;
+  justify-content: center;
 }
 
 
@@ -179,7 +192,8 @@ input {
 .card {
   position: relative;
   background: linear-gradient(180deg, #441DB2 0%, #0d0425 100%);
-  width: 13rem;
+  /* 카드 크기 수정되었습니다. 😀 아래 rem이었음. */
+  width: 17rem;
   overflow: hidden;
   box-shadow: 15px 15px 25px black;
 }

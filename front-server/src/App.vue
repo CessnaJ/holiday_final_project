@@ -1,21 +1,33 @@
 <template>
   <div id="app">
     <nav v-if="!isLoggedIn">
+      <!-- 로그인 안된상태 -->
+      <router-link :to="{ name: 'HomeView' }">
+        <span @click="linkClick">Today's Movie</span>
+      </router-link> | 
       
-      <router-link :to="{ name: 'HomeView' }">Today's movie</router-link> | 
       <router-link :to="{ name: 'SignUpView' }">SignUp</router-link> | 
+      
       <router-link :to="{ name: 'LogInView' }">Log In</router-link> |
       
     </nav>
     <nav v-else>
+      <!-- 로그인 된 상태 -->
+      <router-link :to="{ name: 'HomeView' }">
+        <span @click="linkClick">Today's Movie</span>
+      </router-link> |
       
-      <router-link :to="{ name: 'HomeView' }">Today's movie</router-link> |
       <span>Welcome {{$store.state.username}}</span> |
+      
       <router-link :to="{ name: 'MyProfileView' }">My Profile</router-link> | 
       <!-- 아래 로그아웃버튼신설 😀 -->
       <button v-on:click.prevent="signOut()" >Sign Out</button>
     </nav>
     <SearchBar/>
+    
+    <div class="verticalclearance">
+    </div>
+
     <router-view/>
   </div>
 </template>
@@ -25,6 +37,7 @@
 * {
   font-family: "Montserrat", sans-serif;
 }
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -63,6 +76,13 @@ button {
   display: inline-block;
   font-size: 16px;
 }
+
+.verticalclearance {
+  height: 50px;
+
+}
+
+
 </style>
 
 
@@ -81,7 +101,19 @@ export default {
     methods: {
         signOut() {
             this.$store.dispatch("logOut");
-        }
+        },
+        // emptySearchbox() {
+        //   this.$refs.searchbar.emptySearchbox()
+          // SearchBar.movies.splice(0, this.movies.length);
+          // this.movies.splice(0, this.movies.length);
+          // this.input = ''
+      // console.log(this.movies.length)
+        // }
+          linkClick() {
+            console.log('link')
+            this.$store.commit("emptySearchbar")
+          }
+
     },
     computed: {
         isLoggedIn() {

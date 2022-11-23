@@ -26,7 +26,10 @@ class ProfileSerializer(serializers.ModelSerializer):
             
 		class Meta:
 			model = User
-			fields = ('pk', 'username')
+			# 여기 선택으로 되어있는데 all로 바꾼다. 😀
+			# fields = ('pk', 'username')
+			fields = ('pk', 'username', 'image_select')
+			# fields = '__all__'
                         
 	like_movies = MovieSerializer(many=True)
 	# review_set = ReviewSerializer(many=True, read_only=True)

@@ -4,8 +4,8 @@
     <hr>
     <div class="main_movie">
       <div class="" v-for="(movie, index) in movies" :key="index" >
-      <p>{{ movie.title }}</p>
-      <img class="poseterbox" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
+      <!-- <p>{{ movie.title }}</p> -->
+      <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
       </div>
     </div>
    
@@ -57,7 +57,8 @@ export default {
 }
 
 .posterbox {
-  /* width: 350px; */
+  /* width: 350px; width가 고정되어 짜부되던걸 수정했습니다. 😀*/
+
   margin: 0 auto 10px auto;
   padding: 10px 20px;
   /* color: white; */
@@ -66,7 +67,8 @@ export default {
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
   display: block;
-  width: 350px;
+  /* width: 500px; */
+  /* height: ; */
   margin: 20px auto;
   padding: 10px 45px;
   /* background: white url("@/assets/search-icon.png") no-repeat 15px center; */
@@ -78,5 +80,12 @@ export default {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
 }
 
+.cursor {
+  cursor: pointer;
+}
 
+.postersize {
+  height: 500px;
+
+}
 </style>

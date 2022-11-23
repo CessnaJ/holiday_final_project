@@ -45,9 +45,17 @@ export default {
 
 <template>
   <div v-if="movie">
-    <h1>{{ movie.title }}</h1>
-    <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="">
-    <p>{{ movie.overview }}</p>
+    <div class="bgimg" :style="{backgroundImage:`url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`}">
+      <h1>{{ movie.title }}</h1>
+      <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="">
+      <p>{{ movie.overview }}</p>
+      <p>{{movie.original_title}}</p>
+      <img :src="`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`" alt="">
+      <p>{{movie.release_date}}</p>
+      <p>{{movie.vote_count}}</p>
+      <p>{{movie.vote_average}}</p>
+      <p>{{movie.genres}}</p>
+    </div>
     
   </div>
 </template>
@@ -92,5 +100,10 @@ export default {
 </script>
 
 <style>
+
+.bgimg {
+  /* width: 100%; */
+  width: 100vw;
+}
 
 </style>

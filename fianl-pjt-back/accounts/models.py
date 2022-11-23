@@ -12,7 +12,7 @@ class User(AbstractUser):
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers', blank=True)
     # 프로필사진용 이미지 필드 추가
     image = models.ImageField(blank=True, upload_to='images/', max_length=100)
-    
+    image_select = models.CharField(max_length=10)
 
 # class UserImg(User):
 
