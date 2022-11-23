@@ -15,9 +15,6 @@
           <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/5AFKp85Bka4mQeaeVNs3evyMYYE.jpg" alt="">
           
         </div> -->
-
-
-
       </div>
     </div>
     <div class="item error" v-if="input&&!movies.length">
@@ -86,6 +83,8 @@ export default {
     },
     emptySearchbox() {
       this.movies.splice(0, this.movies.length);
+      this.input = ''
+      // console.log(this.movies.length)
     }
 
 //     filteredList() {
@@ -101,7 +100,6 @@ export default {
     // }
   }
 }
-
 
 </script>
 
