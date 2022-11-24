@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>    
     <div @click="goArticleDetail">
       <div class="comment-list-item-name">
@@ -63,4 +63,4 @@ export default {
   width: 30%;
 }
 
-</style>
+</style> -->

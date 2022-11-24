@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from .serializers import *
 from rest_framework import status
 from django.db.models import Q, Avg
-
+import random
 # permission 어쩌고 추가
 
 
@@ -95,6 +95,17 @@ def search(request):
     # order_by('-vote_count')[:5]
     print(movies)
     serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
+# 랜덤 영화. year를 랜덤으로 프론트에서 받아서 ~년에 개봉한 추천영화
+@api_view(['GET'])
+def randomyear(request, year):
+    # populars = Popular.objects.all()
+    latests = Movie.objects.filter(
+        Q(release_date__contains=year)
+        ).order_by('-vote_count')[:5]
+    serializer = MovieSerializer(latests, many=True)
     return Response(serializer.data)
 
 

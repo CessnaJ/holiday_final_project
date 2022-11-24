@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="article-list">
     <h3>Article List</h3>
     <ArticleListItem
@@ -29,4 +29,4 @@ export default {
 .article-list {
   text-align: start;
 }
-</style>
+</style> -->

@@ -18,6 +18,17 @@
       <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
       </div>
     </div>
+
+
+    <div class="verticalclearance1"></div>
+    <h1 class="h1location">Recommendation Released in {{year}} </h1>
+    <hr>
+    <div class="main_movie">
+      <div class="" v-for="(movie, index) in randomyearmovies" :key="index" >
+      <!-- <p>{{ movie.title }}</p> -->
+      <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
+      </div>
+    </div>
    
   </div>
 </template>
@@ -34,14 +45,20 @@ export default {
       return{
         popularmovies: '',
         latestmovies: '',
+        randomyearmovies: '',
         movieId: '',
         posterurl: '',
         user: [],
+
+        year: 2022,
+        max: 2022,
+        min: 1992
       }
     },
     created() {
      this.getMovie(),
      this.getLatest()
+     this.getRandomyear()
 
     },
     methods: {
@@ -75,6 +92,30 @@ export default {
           console.log(err)
         } )
     },
+
+
+
+
+
+    // 랜덤해의 영화뽑기 위에는 랜덤숫자뽑는 로직 있음. 랜덤 숫자도 자동으로 뽑아서 뿌림
+    getRandomyear() {
+      
+      this.year = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/movies/randomyear/${this.year}/`,
+      })
+        .then((res) => {
+          this.movieId = this.$route.params.movieId
+          this.randomyearmovies = res.data
+          // this.posterurl = 'https://image.tmdb.org/t/p/w500/' + res.data[0].poster_path
+        })
+        .catch((err) => {
+          console.log(err)
+        } )
+
+    },
+
     movieDetail(movie) {
       this.$router.push({name: 'MovieDetailView', params: { movie_id: `${movie.id}`}})
 
