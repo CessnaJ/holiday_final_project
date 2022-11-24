@@ -6,6 +6,11 @@
         <span @click="changeSearchingState">Today's Movie</span>
       </router-link> | 
       
+      <router-link :to="{ name: 'community' }">
+        <span @click="changeSearchingState">Community</span>
+      </router-link> | 
+
+
       <router-link :to="{ name: 'SignUpView' }">
         <span @click="changeSearchingState">SignUp</span>
       </router-link> | 
@@ -17,11 +22,15 @@
     </nav>
     <nav v-else>
       <!-- 로그인 된 상태 -->
+      <span>Welcome {{$store.state.nickname}} {{$store.state.image_select}}</span> |
+      
       <router-link :to="{ name: 'HomeView' }">
         <span @click="changeSearchingState">Today's Movie</span>
       </router-link> |
-      
-      <span>Welcome {{$store.state.nickname}} {{$store.state.image_select}}</span> |
+
+      <router-link :to="{ name: 'community' }">
+        <span @click="changeSearchingState">Community</span>
+      </router-link> | 
       
       <router-link :to="{ name: 'MyProfileView' }">
         <span @click="changeSearchingState">My Profile</span>

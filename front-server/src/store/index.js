@@ -30,9 +30,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    GET_ARTICLES(state, articles) {
-      state.articles = articles
-    },
+    
     // 회원가입 && 로그인
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -58,26 +56,27 @@ export default new Vuex.Store({
     },
     changeSearchingState(state) {
       state.issearching = !state.issearching
-    }
+    },
+
+    //이 아래부터 커뮤니티 관련 기능 😀
+    GET_ARTICLES(state, articles) {
+      state.articles = articles
+    },
+    // 게시글 만들어서 state에 articles에 하나의 article을 넣어
+    CREATE_ARTICLE(state, article) {
+      state.articles.push(article)
+    },
+    // 1개의 article을 삭제해 그리고 state의 articles에 삭제한 article을 filter에서 걸러
+    DELETE_ARTICLE(state, article_id) {
+      state.articles = state.articles.filter((article) => {
+        return !(article.id === article_id)
+      })
+    },
+
+
   },
   actions: {
-    getArticles(context) {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v1/articles/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        }
-      })
-        .then((res) => {
-          // console.log(res, context)
-          // console.log(res.data)
-          context.commit('GET_ARTICLES', res.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
+  
     signUp(context, payload) {
       axios({
         method: 'post',
@@ -140,38 +139,74 @@ export default new Vuex.Store({
     logOut({commit}) {
       commit('LOGOUT_USER')
     },
-
-    // 이하 배치 필요한 로직들
-    // 커뮤니티 게시글 create 하는 법
-    createArticle(context, payload) {
-      const article = {
-        id: context.state.article_id,
-        title: payload.title,
-        content: payload.content,
-        createAt: new Date().getTime()
-      }
-      context.commit('CREATE_ARTICLE', article)
-    },
-    // 리뷰 포스트 목록을 장고에서 불러옴
-    getPosts(context) {
+    // 아티클생성 😀
+    getArticles(context) {
       axios({
         method: 'get',
-        url: `${API_URL}`,
+        url: `${API_URL}/community/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }
       })
         .then((res) => {
-          context.commit('GET_POSTS', res.data)
+          console.log(res, context)
+          context.commit('GET_ARTICLES', res.data)
         })
         .catch((err) => {
           console.log(err)
         })
     },
-    // 포스트 전체글을 받아온다
-    GET_POSTS(state, posts) {
-      state.posts = posts
-    },
+    // getArticles(context) {
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}/api/v1/articles/`,
+    //     headers: {
+    //       Authorization: `Token ${context.state.token}`
+    //     }
+    //   })
+    //     .then((res) => {
+    //       // console.log(res, context)
+    //       // console.log(res.data)
+    //       context.commit('GET_ARTICLES', res.data)
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    // },
+
+
+
+    // // 이하 배치 필요한 로직들
+    // // 커뮤니티 게시글 create 하는 법
+    // createArticle(context, payload) {
+    //   const article = {
+    //     id: context.state.article_id,
+    //     title: payload.title,
+    //     content: payload.content,
+    //     createAt: new Date().getTime()
+    //   }
+    //   context.commit('CREATE_ARTICLE', article)
+    // },
+    // // 리뷰 포스트 목록을 장고에서 불러옴
+    // getPosts(context) {
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}`,
+    //     headers: {
+    //       Authorization: `Token ${context.state.token}`
+    //     }
+    //   })
+    //     .then((res) => {
+    //       context.commit('GET_POSTS', res.data)
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    // },
+    // // 포스트 전체글을 받아온다
+    // GET_POSTS(state, posts) {
+    //   state.posts = posts
+    // },
 
 
   },

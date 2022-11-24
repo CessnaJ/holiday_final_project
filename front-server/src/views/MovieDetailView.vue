@@ -89,37 +89,40 @@ export default {
               })
               .catch((err) => {
                 console.log(err)
-              }),
-
+              })
+            }
+          }
+        
+  
         
     
-            axios({
-                method: 'get',
-                url: `https://api.themoviedb.org/3/movie/${this.$route.params.movie_id}/`,
-                params: {
-                  api_key:c45ff232f6fbb4731afd07f09e5b072b,
-                  language: ko-KR
-                }
-            })
-              .then((res) => {
-                this.movieId = this.$route.params.movieId
-                this.movie = res.data
-                this.genreString = res.data.genres
-                console.log(res.data)
-                // this.posterurl = `https://image.tmdb.org/t/p/w500` + res.data.poster_path
+            // axios({
+            //     method: 'get',
+            //     url: `https://api.themoviedb.org/3/movie/${this.$route.params.movie_id}/`,
+            //     params: {
+            //       api_key:c45ff232f6fbb4731afd07f09e5b072b,
+            //       language: ko-KR
+            //     }
+            // })
+            //   .then((res) => {
+            //     this.movieId = this.$route.params.movieId
+            //     this.movie = res.data
+            //     this.genreString = res.data.genres
+            //     console.log(res.data)
+            //     // this.posterurl = `https://image.tmdb.org/t/p/w500` + res.data.poster_path
 
-                for (const genre_num in this.genre_dict) {
-                  if (genre_num in this.movie.genres) {
-                    console.log('forlooping')
-                    this.genre_list.push(this.genre_dict[genre_num])
-                  }
-                }
-              })
-              .catch((err) => {
-                console.log(err)
-              })
-    }
-}
+            //     for (const genre_num in this.genre_dict) {
+            //       if (genre_num in this.movie.genres) {
+            //         console.log('forlooping')
+            //         this.genre_list.push(this.genre_dict[genre_num])
+            //       }
+            //     }
+            //   })
+            //   .catch((err) => {
+            //     console.log(err)
+            //   })
+
+
 
 </script>
 

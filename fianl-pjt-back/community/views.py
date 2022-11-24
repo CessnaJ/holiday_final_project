@@ -55,7 +55,7 @@ from .models import Article, Comment
 
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def article_list(request):
     if request.method == 'GET':
         # articles = Article.objects.all()
@@ -82,14 +82,18 @@ def article_detail(request, article_pk):
         return Response(serializer.data)
     
     elif request.method == 'DELETE':
-        article.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user == article.user:
+            article.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     elif request.method == 'PUT':
         serializer = ArticleSerializer(article, data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)
+            if request.user == article.user:
+                serializer.save()
+                return Response(serializer.data)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
 @api_view(['GET'])
