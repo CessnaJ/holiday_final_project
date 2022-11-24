@@ -1,54 +1,59 @@
 <template>
-  <div id="app" class="bgnavy">
-    
-    <nav v-if="!isLoggedIn" >
-      <!-- 로그인 안된상태 -->
-      <img class="mainimgsize" src="@/assets/chicken.png"/>
-      <router-link :to="{ name: 'HomeView' }">
-        <span @click="changeSearchingState">Today's Movie</span>
-      </router-link> | 
-      
-      <router-link :to="{ name: 'community' }">
-        <span @click="changeSearchingState">Community</span>
-      </router-link> | 
+  <div>
+    <div id="app" class="bgnavy bgpadding">
+      <nav v-if="!isLoggedIn" >
+        <!-- 로그인 안된상태 -->
+        <img class="mainimgsize" src="@/assets/chicken.png"/>
+        <router-link :to="{ name: 'HomeView' }">
+          <span @click="changeSearchingState">Today's Movie</span>
+        </router-link> | 
+        
+        <router-link :to="{ name: 'community' }">
+          <span @click="changeSearchingState">Community</span>
+        </router-link> | 
 
 
-      <router-link :to="{ name: 'SignUpView' }">
-        <span @click="changeSearchingState">SignUp</span>
-      </router-link> | 
-      
-      <router-link :to="{ name: 'LogInView' }">
-        <span @click="changeSearchingState">Log In</span>
-      </router-link> |
-      
-    </nav>
-    <nav v-else>
-      <!-- 로그인 된 상태 -->
-      <img class="mainimgsize" src="@/assets/chicken.png"/>
-      <span class="hello">Welcome {{$store.state.nickname}}</span> |
-      
-      <router-link :to="{ name: 'HomeView' }">
-        <span @click="changeSearchingState">Today's Movie</span>
-      </router-link> |
+        <router-link :to="{ name: 'SignUpView' }">
+          <span @click="changeSearchingState">SignUp</span>
+        </router-link> | 
+        
+        <router-link :to="{ name: 'LogInView' }">
+          <span @click="changeSearchingState">Log In</span>
+        </router-link> |
+        
+      </nav>
+      <nav v-else>
+        <!-- 로그인 된 상태 -->
+        <img class="mainimgsize" src="@/assets/chicken.png"/>
+        <span class="hello">Welcome {{$store.state.nickname}}</span> |
+        
+        <router-link :to="{ name: 'HomeView' }">
+          <span @click="changeSearchingState">Today's Movie</span>
+        </router-link> |
 
-      <router-link :to="{ name: 'community' }">
-        <span @click="changeSearchingState">Community</span>
-      </router-link> | 
+        <router-link :to="{ name: 'community' }">
+          <span @click="changeSearchingState">Community</span>
+        </router-link> | 
+        
+        <router-link :to="{ name: 'MyProfileView' }">
+          <span @click="changeSearchingState">My Profile</span>
+        </router-link> | 
+        <!-- 아래 로그아웃버튼신설 😀 -->
+        <button class="buttonclass" v-on:click.prevent="signOut()" >
+          <span @click="changeSearchingState">Sign Out</span>
+        </button>
+      </nav>
+      <SearchBar/>
       
-      <router-link :to="{ name: 'MyProfileView' }">
-        <span @click="changeSearchingState">My Profile</span>
-      </router-link> | 
-      <!-- 아래 로그아웃버튼신설 😀 -->
-      <button class="buttonclass" v-on:click.prevent="signOut()" >
-        <span @click="changeSearchingState">Sign Out</span>
-      </button>
-    </nav>
-    <SearchBar/>
-    
-    <div class="verticalclearance">
+      <div class="verticalclearance">
+      </div>
+
+      <router-view/>
     </div>
+  <div>
+    <Footer/>
+  </div>    
 
-    <router-view/>
   </div>
 </template>
 
@@ -58,6 +63,9 @@
   font-family: "Montserrat", sans-serif;
 }
 
+.bgpadding {
+  padding-bottom: 50px;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -134,12 +142,14 @@ nav a.router-link-exact-active {
 
 <script>
 import SearchBar from '@/components/SearchBar.vue';
+import Footer from '@/components/Footer.vue'
 // import { create } from 'domain';
 
 export default {
     name: "LogInView",
     components: { 
-      SearchBar 
+      SearchBar,
+      Footer 
     },
 
     data() {

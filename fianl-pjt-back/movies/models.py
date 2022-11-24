@@ -36,10 +36,7 @@ class Rate(models.Model): # 내 프로필에 내가 준 별점순을 나열하�
   updated_at = models.DateField(auto_now=True)
 
 
-
-
-
-# 임시로 판 모델. popular 저장해서 뿌려주는 용도
+# popular 저장해서 뿌려주는 용도
 class Popular(models.Model): 
   title = models.CharField(max_length=100) # 제목
   original_title = models.CharField(max_length=100) # 원제목

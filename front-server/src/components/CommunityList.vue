@@ -24,56 +24,61 @@
       
       
     </div>
-  </template>
+</template>
   
-  <script>
-  import CommunityListItem from '@/components/CommunityListItem'
+<script>
+import CommunityListItem from '@/components/CommunityListItem'
   
-  export default {
-      name: 'CommunityList',
-      components: {
-          CommunityListItem
-      },
-      computed: {
-          articles() {
-              return this.$store.state.articles
+export default {
+    name: 'CommunityList',
+    components: {
+        CommunityListItem
+    },
+    computed: {
+        articles() {
+            return this.$store.state.articles
           }
       },
   
   }
-  </script>
+</script>
   
-  <style>
-  .article-list {
-      text-align: start;
-  }
-  .table-area {
-      height: 1000px;
-      width: 1000px;
-      background-color: #C2D7F3;
-  }
-  .comment-list-item-name {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: 0.5px solid whitesmoke;
-    padding: 1em;
-  }
-  .w1 {
-    width: 10%;
+<style>
+.article-list {
     text-align: start;
-  }
-  .w2 {
-    width: 40%;
-    text-align: start;
-  }
-  .w3 {
-    width: 20%;
-    text-align: start;
-  }
-  .w4 {
-    width: 30%;
-    text-align: start;
-  }
-  
-  </style>
+}
+
+.table-area {
+    height: 1000px;
+    width: 1000px;
+    background-color: #C2D7F3;
+}
+
+.comment-list-item-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0.5px solid whitesmoke;
+  padding: 1em;
+}
+
+.w1 {
+  width: 10%;
+  text-align: start;
+}
+ 
+.w2 {
+  width: 40%;
+  text-align: start;
+}
+
+.w3 {
+  width: 20%;
+  text-align: start;
+}
+.w4 {
+  width: 30%;
+  text-align: start;
+}
+
+</style>

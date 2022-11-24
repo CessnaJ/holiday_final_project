@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex">
-      <h1>Sign Up Page</h1>
+      <h1 style="color: wheat">Sign Up Page</h1>
     </div>
 
     <div class="verticalclearance1"></div>

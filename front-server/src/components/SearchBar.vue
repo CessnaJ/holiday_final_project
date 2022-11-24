@@ -7,6 +7,7 @@
       <div class="item fruit card" v-for="(movie, index) in movies" :key="index">
         <!-- <p>{{ movie }}</p> -->
         <img class ="" :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`" @click="movieDetail(movie); emptySearchbox()"/>
+        
         <div class="inner-content">
             <span class="title">{{movie.title}}</span>
             <hr>
@@ -248,5 +249,9 @@ export default {
   border-top: 1px solid #f1f1f1;
   width: 100%;
 }
+
+
+
+
 
 </style>

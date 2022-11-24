@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div >
+    <div class="titlebox">
       <span class="h1style">Trendy movies</span>
     </div>
     <!-- <div class="verticalclearance1"></div> -->
@@ -8,29 +8,33 @@
     <div class="main_movie">
       <div class="h1style" v-for="(movie, index) in popularmovies" :key="index" >
       <!-- <p>{{ movie.title }}</p> -->
-      <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
+      <img class="posterbox cursor postersize posterinside" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
       </div>
     </div>
 
 
     <div class="verticalclearance1"></div>
-    <span class="h1style">Latest Releases </span>
+    <div class="titlebox">
+      <span class="h1style">Latest Releases </span>
+    </div>
     <!-- <hr> -->
     <div class="main_movie">
       <div class="" v-for="(movie, index) in latestmovies" :key="index" >
       <!-- <p>{{ movie.title }}</p> -->
-      <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
+      <img class="posterbox cursor postersize posterinside" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
       </div>
     </div>
 
 
     <div class="verticalclearance1"></div>
-    <span class="h1style">Recommendations Released in {{year}} </span>
+    <div class="titlebox">
+      <span class="h1style">Recommendations Released in {{year}} </span>
+    </div>
     <!-- <hr> -->
     <div class="main_movie">
       <div class="" v-for="(movie, index) in randomyearmovies" :key="index" >
       <!-- <p>{{ movie.title }}</p> -->
-      <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
+      <img class="posterbox cursor postersize posterinside" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
       </div>
     </div>
    
@@ -145,17 +149,13 @@ export default {
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
   display: block;
-  /* width: 500px; */
-  /* height: ; */
-  margin: 20px auto;
-  padding: 10px 45px;
-  /* background: white url("@/assets/search-icon.png") no-repeat 15px center; */
-  background-size: 15px 15px;
-  /* font-size: 16px; */
-  /* border: none; */
-  /* border-radius: 5px; */
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
+  /* margin: 20px auto; */
+  /* padding: 10px 45px; */
+
+  /* background-size: 15px 15px; */
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .cursor {
@@ -171,11 +171,21 @@ export default {
   height: 40px;
 }
 
+
+
+.titlebox{
+  display: flex;
+  justify-content: center;
+}
+
+
 .h1style {
   margin: left 20px;
   color: wheat;
   font-weight: bold;
   font-size: 30px;
+  width: 90%;
+  max-width: 2000px;
   /* text-align: ; */
   /* float: left; */
 }
@@ -184,4 +194,26 @@ export default {
   cursor: pointer;
   box-shadow: rgba(50, 50, 93, 0.25);
 }
+
+.posterinside {
+  
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.posterinside:hover {
+  background-color: #13273ef8;
+  /* box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4); */
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  color: #fff;
+  transform: translateY(-10px);
+}
+
 </style>

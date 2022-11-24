@@ -1,13 +1,16 @@
 <template>
-  <div @click="goArticleDetail">
-    <span>
-      <p>{{ article.id }} {{ article.title }}</p>
-    </span>
-    <span></span>
-    <span><p>작성자 : {{ article.username }}</p></span>
-    <span><p>{{articleCreatedAt}}</p></span>
-    <hr>
+  <div>    
+    <div @click="goArticleDetail">
+      <div class="comment-list-item-name">
+        <div class="w1" >{{ article.id }}</div> 
+        <div class="w2">{{ article.title }}</div>
+        <div class="w3">{{ article.username }}</div>
+        <div class="w4">{{articleCreatedAt}}</div>
+      </div>
   </div>
+
+  </div>
+  
 </template>
 
 <script>
@@ -33,6 +36,34 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.comment-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1em;
+}
+.comment-list-item-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0.5px solid whitesmoke;
+  padding: 1em;
+}
+.comment-list-item-name:hover {
+  cursor: pointer;
+}
+.w1 {
+  width: 10%;
+}
+.w2 {
+  width: 40%;
+}
+.w3 {
+  width: 20%;
+  font-weight: bold;
+}
+.w4 {
+  width: 30%;
+}
 
 </style>

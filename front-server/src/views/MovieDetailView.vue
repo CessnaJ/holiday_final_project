@@ -1,22 +1,43 @@
 <template>
   <div v-if="movie">
-    <div class="bgimg">
-      <!-- <div :style="{backgroundImage:`url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`}"> -->
-    <!-- <img :src="require(`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`)" alt="" width="50px"/> -->
-      <h1>{{ movie.title }}</h1>
-      <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="">
-      <p>{{ movie.overview }}</p>
-      <p>{{movie.original_title}}</p>
-      <!-- <img :src="`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`" alt=""> -->
-      <p>{{movie.release_date}}</p>
-      <p>{{movie.vote_count}}</p>
-      <p>{{movie.vote_average}}</p>
-      <p>{{movie.genres}}</p>
-      <p>{{genre_list}}</p>
-      <p>{{movie}}</p>
+    <div class="edgebox footersep flex">
+      <div class="postersurrounding">
+        <img class="postersurrounding cursor" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" @click="getvideo" alt="">
+      </div>
 
+      <div class="flex-column">
+        <div class="verticalseparation"></div>
+        <span class="biggertext">{{ movie.title }}</span>
+        <span class="mediumtext marginl">{{movie.original_title}}</span>
+        <br>
+        
 
-      
+        <div class="verticalsep">
+          <span v-for="(item, index) in genre_list" :key="`item-${index}`" class="mediumtext genrespace">{{item}}</span>
+        </div>
+        <div class="verticalsep">
+          <span style="font-size: 50px; margin-right: 10px;">⌚</span>
+          <span class="semibiggertext">{{movie.runtime}}</span> <span class="mediumtext"> min</span>
+        </div>
+
+        <div class="flex verticalslight">
+          <div>
+          <p style="font-size: 50px;">😀</p>
+          <p class="mediumtext txtalign">{{movie.vote_count}}</p>
+          </div>
+          <div class="">
+            <p style="font-size: 50px;">⭐</p>
+            <p class="mediumtext txtalign">{{movie.vote_average}}</p>
+          </div>
+        </div>
+        
+        <div class="verticalslight">
+          <span style="font-size: 50px;">📅</span>
+          <span class="mediumtext">{{movie.release_date}}</span>
+        </div>
+        <p class="mediumtext verticalsep">{{ movie.overview }}</p>
+
+      </div>
     </div>
     
   </div>
@@ -41,9 +62,6 @@ export default {
             genreString: '',
             avg: 0,
             getMovieDetail:null,
-
-
-
 
             genre_list:[],
             genre_dict: {
@@ -70,33 +88,15 @@ export default {
             
         }
     },
+
+    methods: {
+      getvideo() {
+
+      }
+    },
+
     //디테일페이지는 그냥 tmdb에서 디테일 긁고, 장르 object돌면서 가는것도 괜찮아보인다.
     created() {
-            // axios({
-            //     method: 'get',
-            //     url: `http://127.0.0.1:8000/movies/${this.$route.params.movie_id}/`,
-            // })
-            //   .then((res) => {
-            //     this.movieId = this.$route.params.movieId
-            //     this.movie = res.data
-            //     this.genreString = res.data.genres
-            //     console.log(res.data)
-            //     // this.posterurl = `https://image.tmdb.org/t/p/w500` + res.data.poster_path
-
-            //     for (const genre_num in this.genre_dict) {
-            //       if (genre_num in this.movie.genres) {
-            //         console.log('forlooping')
-            //         this.genre_list.push(this.genre_dict[genre_num])
-            //       }
-            //     }
-            //   })
-            //   .catch((err) => {
-            //     console.log(err)
-            //   })
-            
-          
-        
-  
               console.log(`${this.$route.params.movie_id}`)
     
             axios({
@@ -111,19 +111,55 @@ export default {
                 this.movieId = this.$route.params.movieId
                 this.movie = res.data
                 this.genreString = res.data.genres
-                console.log(res.data)
-                // this.posterurl = `https://image.tmdb.org/t/p/w500` + res.data.poster_path
-
-                for (const genre_num in this.genre_dict) {
-                  if (genre_num in this.movie.genres) {
-                    console.log('forlooping')
-                    this.genre_list.push(this.genre_dict[genre_num])
-                  }
-                }
+                this.genre_list = res.data.genres.map(e=>Object.keys(this.genre_dict).includes(e.id+'') ?e.name :false).filter(e => e)
+                console.log(this.genre_list)
               })
               .catch((err) => {
                 console.log(err)
               })
+              ,
+
+
+              axios({
+                method: 'get',
+                url: `https://api.themoviedb.org/3/movie/${this.$route.params.movie_id}/reviews`,
+                params: {
+                  api_key: "c45ff232f6fbb4731afd07f09e5b072b",
+                  language: "en-US"
+                }
+            })
+              .then((res) => {
+                console.log(res.data)
+                // this.movieId = this.$route.params.movieId
+                // this.movie = res.data
+                
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+              ,
+
+              axios({
+                method: 'get',
+                url: `https://api.themoviedb.org/3/movie/${this.$route.params.movie_id}/videos`,
+                params: {
+                  api_key: "c45ff232f6fbb4731afd07f09e5b072b",
+                  language: "en-US"
+                }
+            })
+              .then((res) => {
+                console.log(res.data)
+                // this.movieId = this.$route.params.movieId
+                // this.movie = res.data
+                
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+
+
+
+
             }
           }
 
@@ -131,48 +167,69 @@ export default {
 </script>
 
 <style>
+.cursor {
+  cursor: pointer;
+}
 
-.bgimg {
-  /* width: 100%; */
-  /* width: 100%; */
-    /* height: 100vh;
-    width: 100vw; */
-    /* background-color: #15273E; */
-    background: linear-gradient(130deg,  #20395a 0%, #15273E 100%);
-    position: relative;
-    
-    /* background-image: url('img/signup.jpeg'); */
-    background-repeat : no-repeat;
-    background-size : cover;
-    /* opacity: 0.5; */
-    z-index: -1;
+.txtalign {
+  text-align: center;
+}
+
+.verticalseparation {
+  margin-top: 60px;
+}
+
+.verticalsep {
+  margin-top: 40px;
+}
+
+.verticalslight {
+  margin-top: 20px;
+}
+
+.footersep {
+  margin-bottom: 100px ;
+}
+
+.biggertext {
+  color: wheat;
+  font: 40px bold;
+  margin-bottom: 20px;
 
 }
 
-.bgimg::before {
-  /* width: 100%; */
-  /* width: 100%; */
-    /* height: 100vh;
-    width: 100vw; */
-    /* background-image: url('img/signup.jpeg'); */
-    /* background-repeat : no-repeat; */
-    /* background-size : cover; */
-    /* opacity: 0.5; */
-        /* content: ""; */
-        /* background: url(https://cdn.pixabay.com/photo/2020/06/28/00/04/chicago-5347435_960_720.jpg); */
-        
-        /* background-color: #15273E; */
-        background: linear-gradient(130deg,  #1e3655ea 0%, #15273E 100%);
-        background-size: cover;
-        opacity: 0;
-        position: absolute;
-        /* top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px; */
+.semibiggertext {
+  color: wheat;
+  font: 30px bold;
+  margin-bottom: 20px;
 
 }
 
+.mediumtext {
+  color: wheat;
+  font: 23px bolder;
+}
+
+.edgebox {
+  margin: 10px 200px 0px;
+  padding: 0px 0px 60px;
+  border-radius: 20px;
+}
+
+
+.postersurrounding {
+  margin: 0px 50px 0px 0px;
+  border-radius: 25px;
+}
+
+.genrespace {
+  margin-left: 0px;
+  margin-right: 20px;
+}
+
+.marginl {
+  margin-left: 30px;
+}
 /* .container {
   width: 100%;
   height: 100%;

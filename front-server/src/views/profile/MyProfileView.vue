@@ -1,14 +1,30 @@
 <template>
-  <div>
-    <h1>My profile page</h1>
-    <!-- <button @click="logout">Logout</button> 필요없음.-->
+  <div class="flex">
+    <div class="">
+      <h1 class="bigtxt textcenter">My profile</h1>
+      <img v-if="$store.state.image_select" class="profileimg verticalseperation" :src="require(`@/assets/profile${$store.state.image_select}.png`)" alt="">
+      <img v-else class="profileimg verticalseperation" src="@/assets/profile2.png"/>
+    </div>
+    
+    
     <div class="container">
-      <!-- <img v-if="$store.state.image_select" class="profileimg" :src="`@/assets/profile${imagesource}.png`" alt=""> -->
-      <img v-if="$store.state.image_select" class="profileimg" src="@/assets/profile2.png" alt="">
-      <img v-else class="profileimg" src="@/assets/profile2.png"/>
-      <span>{{$store.state.nickname}}'s Profile{{$store.state.image_select}}번 이미지를 선택했음.</span>
-      <!-- <span>{{$store.state.issearching}}</span> -->
-      <!-- <span>{{$store.state.nickname}}</span> -->
+      <p class="midtxt">Username: {{$store.state.username}}</p>
+      <p class="midtxt">Nickname: {{$store.state.nickname}}</p>
+      <!-- <p>{{$store.state.image_select}}번 이미지를 선택했음.</p> -->
+      
+      <div class="horizontaldisplay"></div>
+        <div class="verticaldisplay">
+          <p class="bigtxt">👍</p>
+          <p class="bigtxt">0</p>
+        </div>
+        <div class="verticaldisplay">
+          <p>d</p>
+          <p>d</p>
+        </div>
+      <div class="verticaldisplay">
+        <p>🏎</p>
+      </div>
+
     </div>
     
   </div>
@@ -61,4 +77,40 @@ export default {
 .container {
   justify-content:center;
 }
+
+.bigtxt {
+  color: wheat;
+  font-size: 40px;
+  text-align: center;
+}
+
+.midtxt {
+  color: wheat;
+  font-size: 30px;
+}
+
+.flexeven {
+  justify-content: space-evenly;
+}
+
+.textcenter {
+  text-align: center;
+}
+
+
+.verticalseperation {
+  margin-top: 30px;
+}
+
+.horizontaldisplay {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.verticaldisplay {
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 </style>
