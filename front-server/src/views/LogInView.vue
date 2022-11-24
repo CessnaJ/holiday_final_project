@@ -1,14 +1,15 @@
 <template>
   <div>
     <h1>LogIn Page</h1>
+    <div class="verticalclearance"></div>
     <form @submit.prevent="logIn">
       <label for="username">username : </label>
-      <input type="text" id="username" v-model="username"><br>
+      <input class="inputbox" type="text" id="username" v-model="username"><br>
 
       <label for="password"> password : </label>
-      <input type="password" id="password" v-model="password"><br>
+      <input class="inputbox" type="password" id="password" v-model="password"><br>
 
-      <input type="submit" value="logIn">
+      <input class="inputbox" type="submit" value="logIn">
     </form>
   </div>
 </template>
@@ -39,7 +40,7 @@ export default {
 
 
 <style>
-input {
+.inputbox {
   display: block;
   width: 350px;
   margin: 20px auto;
@@ -53,4 +54,8 @@ input {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+.verticalclearance{
+  height: 45px;
+
+}
 </style>

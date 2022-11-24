@@ -105,6 +105,7 @@ nav a.router-link-exact-active {
 
 <script>
 import SearchBar from '@/components/SearchBar.vue';
+// import { create } from 'domain';
 
 export default {
     name: "LogInView",
@@ -141,9 +142,13 @@ export default {
             return this.$store.state.token;
         }
     },
-    
-}
 
+    // created() {
+    //   console.log(this.$store.state.nickname)
+    // }
+    
+
+}
 
 
 

@@ -1,7 +1,7 @@
 <template>
   <div v-if="movie">
-    <div class="bgimg" 
-      :style="{backgroundImage:`url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`}">
+    <div class="bgimg">
+      <!-- <div :style="{backgroundImage:`url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`}"> -->
     <!-- <img :src="require(`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`)" alt="" width="50px"/> -->
       <h1>{{ movie.title }}</h1>
       <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="">
@@ -72,9 +72,40 @@ export default {
     },
     //디테일페이지는 그냥 tmdb에서 디테일 긁고, 장르 object돌면서 가는것도 괜찮아보인다.
     created() {
+            // axios({
+            //     method: 'get',
+            //     url: `http://127.0.0.1:8000/movies/${this.$route.params.movie_id}/`,
+            // })
+            //   .then((res) => {
+            //     this.movieId = this.$route.params.movieId
+            //     this.movie = res.data
+            //     this.genreString = res.data.genres
+            //     console.log(res.data)
+            //     // this.posterurl = `https://image.tmdb.org/t/p/w500` + res.data.poster_path
+
+            //     for (const genre_num in this.genre_dict) {
+            //       if (genre_num in this.movie.genres) {
+            //         console.log('forlooping')
+            //         this.genre_list.push(this.genre_dict[genre_num])
+            //       }
+            //     }
+            //   })
+            //   .catch((err) => {
+            //     console.log(err)
+            //   })
+            
+          
+        
+  
+              console.log(`${this.$route.params.movie_id}`)
+    
             axios({
                 method: 'get',
-                url: `http://127.0.0.1:8000/movies/${this.$route.params.movie_id}/`,
+                url: `https://api.themoviedb.org/3/movie/${this.$route.params.movie_id}`,
+                params: {
+                  api_key: "c45ff232f6fbb4731afd07f09e5b072b",
+                  language: "ko-KR"
+                }
             })
               .then((res) => {
                 this.movieId = this.$route.params.movieId
@@ -95,36 +126,6 @@ export default {
               })
             }
           }
-        
-  
-        
-    
-            // axios({
-            //     method: 'get',
-            //     url: `https://api.themoviedb.org/3/movie/${this.$route.params.movie_id}/`,
-            //     params: {
-            //       api_key:c45ff232f6fbb4731afd07f09e5b072b,
-            //       language: ko-KR
-            //     }
-            // })
-            //   .then((res) => {
-            //     this.movieId = this.$route.params.movieId
-            //     this.movie = res.data
-            //     this.genreString = res.data.genres
-            //     console.log(res.data)
-            //     // this.posterurl = `https://image.tmdb.org/t/p/w500` + res.data.poster_path
-
-            //     for (const genre_num in this.genre_dict) {
-            //       if (genre_num in this.movie.genres) {
-            //         console.log('forlooping')
-            //         this.genre_list.push(this.genre_dict[genre_num])
-            //       }
-            //     }
-            //   })
-            //   .catch((err) => {
-            //     console.log(err)
-            //   })
-
 
 
 </script>
@@ -134,17 +135,21 @@ export default {
 .bgimg {
   /* width: 100%; */
   /* width: 100%; */
-    height: 100vh;
-    width: 100vw;
+    /* height: 100vh;
+    width: 100vw; */
+    /* background-color: #15273E; */
+    background: linear-gradient(130deg,  #20395a 0%, #15273E 100%);
+    position: relative;
+    
     /* background-image: url('img/signup.jpeg'); */
     background-repeat : no-repeat;
     background-size : cover;
-    opacity: 0.5;
+    /* opacity: 0.5; */
     z-index: -1;
 
 }
 
-.bgimg::after {
+.bgimg::before {
   /* width: 100%; */
   /* width: 100%; */
     /* height: 100vh;
@@ -152,7 +157,19 @@ export default {
     /* background-image: url('img/signup.jpeg'); */
     /* background-repeat : no-repeat; */
     /* background-size : cover; */
-    opacity: 0.5;
+    /* opacity: 0.5; */
+        /* content: ""; */
+        /* background: url(https://cdn.pixabay.com/photo/2020/06/28/00/04/chicago-5347435_960_720.jpg); */
+        
+        /* background-color: #15273E; */
+        background: linear-gradient(130deg,  #1e3655ea 0%, #15273E 100%);
+        background-size: cover;
+        opacity: 0;
+        position: absolute;
+        /* top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px; */
 
 }
 

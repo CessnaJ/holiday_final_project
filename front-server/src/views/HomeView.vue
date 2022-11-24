@@ -1,9 +1,19 @@
 <template>
   <div>
     <h1>Here's trendy movies</h1>
+    <div class="verticalclearance1"></div>
     <hr>
     <div class="main_movie">
-      <div class="" v-for="(movie, index) in movies" :key="index" >
+      <div class="h1location" v-for="(movie, index) in popularmovies" :key="index" >
+      <!-- <p>{{ movie.title }}</p> -->
+      <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
+      </div>
+    </div>
+    <div class="verticalclearance1"></div>
+    <h1 class="h1location">Latest Releases </h1>
+    <hr>
+    <div class="main_movie">
+      <div class="" v-for="(movie, index) in latestmovies" :key="index" >
       <!-- <p>{{ movie.title }}</p> -->
       <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
       </div>
@@ -22,16 +32,20 @@ export default {
 
     data() {
       return{
-        movies: '',
+        popularmovies: '',
+        latestmovies: '',
         movieId: '',
         posterurl: '',
         user: [],
       }
     },
     created() {
-     this.getMovie()
+     this.getMovie(),
+     this.getLatest()
+
     },
     methods: {
+      // popular 5개 받아오기
       getMovie() {
       axios({
         method: 'get',
@@ -39,7 +53,22 @@ export default {
       })
         .then((res) => {
           this.movieId = this.$route.params.movieId
-          this.movies = res.data
+          this.popularmovies = res.data
+          // this.posterurl = 'https://image.tmdb.org/t/p/w500/' + res.data[0].poster_path
+        })
+        .catch((err) => {
+          console.log(err)
+        } )
+    },
+    // 최근개봉일중에 평점 7점이상 5개 받아오기
+    getLatest() {
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/movies/latest/`,
+      })
+        .then((res) => {
+          this.movieId = this.$route.params.movieId
+          this.latestmovies = res.data
           // this.posterurl = 'https://image.tmdb.org/t/p/w500/' + res.data[0].poster_path
         })
         .catch((err) => {
@@ -91,5 +120,13 @@ export default {
 .postersize {
   height: 500px;
 
+}
+
+.verticalclearance1 {
+  height: 30px;
+}
+
+.h1location {
+  margin: left 300px;
 }
 </style>

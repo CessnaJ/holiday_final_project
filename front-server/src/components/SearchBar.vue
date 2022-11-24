@@ -3,7 +3,7 @@
     <input class="searchboxinput" type="text" :value="input" @input="input=$event.target.value; getSearchmovies(input)" placeholder="Search Movies by Title" />
     <!-- <span>{{input}}</span> -->
     <!-- <input type="text" class="searchbox" v-model="input" v-on:input="getSearchmovies(input)" placeholder="Search Movies by Title" /> -->
-    <div class="container" v-if="$store.state.issearching">
+    <div class="containers" v-if="$store.state.issearching">
       <div class="item fruit card" v-for="(movie, index) in movies" :key="index">
         <!-- <p>{{ movie }}</p> -->
         <img class ="" :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`" @click="movieDetail(movie); emptySearchbox()"/>
@@ -179,7 +179,8 @@ export default {
 }
 
 .fruit {
-  background-color: rgb(97, 62, 252);
+  /* background-color: rgb(97, 62, 252); */
+  background-color: #15273E;
   cursor: pointer;
 }
 
@@ -188,9 +189,10 @@ export default {
 .error {
   background-color: tomato;
 }
-.container {
+.containers {
+  width: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 
@@ -200,7 +202,8 @@ export default {
 /* 여기 아래가 카드 호버효과 */
 .card {
   position: relative;
-  background: linear-gradient(180deg, #441DB2 0%, #0d0425 100%);
+  background: linear-gradient(180deg,  #254369 0%, #0d0425 100%);
+  /* 원래 보라색컬러 #441DB2 */
   /* 카드 크기 수정되었습니다. 😀 아래 rem이었음. */
   width: 17rem;
   overflow: hidden;

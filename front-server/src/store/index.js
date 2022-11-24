@@ -116,9 +116,15 @@ export default new Vuex.Store({
             url: `${API_URL}/profile/${payload.username}/`,
           })
             .then((res) => {
-              context.state.nickname = res.data.nickname
-              context.state.image_select = res.data.image_select
-              // console.log(context)
+              this.state.nickname = res.data.nickname
+              this.state.image_select = res.data.image_select
+
+              console.log(res)
+              console.log(`${res.data.username}응답의 username칸.`)
+              console.log(`${this.state.image_select}this가 뭐지?`)
+              console.log(res.data.nickname)
+              console.log('로그인로직. res를받긴했음. 이 위의 3개는 res,context, res.data.nickname')
+              console.log(`${this.state.nickname} - 제대로 받았는지`)
               // 유저네임, 패스워드를 줘서 로그인을 하게 되면, 장고에서 nickname, image_select를 시리얼라이징해서 보내줄거임. 😊 아래 문제 해결!
             })
           // this.state.image_select= res.data.image_select

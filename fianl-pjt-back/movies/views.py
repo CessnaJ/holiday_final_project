@@ -69,6 +69,15 @@ def popular(request):
     serializer = PopularSerializer(populars, many=True)
     return Response(serializer.data)
 
+# 평점 7점 중 가장 최근 개봉일 5개 뿌림.
+@api_view(['GET'])
+def latest(request):
+    # populars = Popular.objects.all()
+    latests = Movie.objects.filter(
+        Q(vote_average__gte=7)
+        ).order_by('-release_date')[:5]
+    serializer = MovieSerializer(latests, many=True)
+    return Response(serializer.data)
 
 
 # 검색해서 영화들중에 parameter='keyword'에 포함하는것들 인기도순으로 5개 뽑아서 보내줌.

@@ -24,6 +24,7 @@ urlpatterns = [
     path('rating/<int:movie_id>/', views.rating), # 평점/댓글 먹이기
     path('like/<int:movie_id>/', views.like), # 영화 좋아요
     path('popular/', views.popular), # 유명한 영화 10개 받아오기.
+    path('latest/', views.latest), # 개봉일최근순, 평점 7점이상
     path('search/', views.search, name='search'), # 검색창에 input먹을때마다 get요청보내서 받아오기.
     #  path('movies/genre/<int:genre_id>/', views.movie_genre),
 

@@ -1,23 +1,29 @@
 <template>
   <div>
     <h1>Sign Up Page</h1>
+    <div class="verticalclearance1"></div>
+
     <form @submit.prevent="signUp">
       <label for="username">username : </label>
-      <input type="text" id="username" v-model="username"><br>
+      <input class="inputbox" type="text" id="username" v-model="username"><br>
 
       <label for="nickname">nickname : </label>
-      <input type="text" id="nickname" v-model="nickname"><br>
+      <input class="inputbox" type="text" id="nickname" v-model="nickname"><br>
+
+      <div class="verticalclearance1"></div>
 
       <label for="password1"> password : </label>
-      <input type="password" id="password1" v-model="password1"><br>
+      <input class="inputbox" type="password" id="password1" v-model="password1"><br>
 
       <label for="password2"> password confirmation : </label>
-      <input type="password" id="password2" v-model="password2">
+      <input class="inputbox" type="password" id="password2" v-model="password2">
+
+      <div class="verticalclearance2"></div>
       
       <label for="image_select">Select profile image by typing 1-5 : </label>
-      <input type="image_select" id="image_select" v-model="image_select">
+      <input class="inputbox" type="image_select" id="image_select" v-model="image_select">
 
-      <input type="submit" value="SignUp">
+      <input class="inputbox" type="submit" value="SignUp">
     </form>
   </div>
 </template>
@@ -61,8 +67,8 @@ export default {
 </script>
 
 <style>
-input {
-  display: block;
+.inputbox {
+  /* display: block; */
   width: 350px;
   margin: 20px auto;
   padding: 10px 45px;
@@ -75,4 +81,11 @@ input {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+.verticalclearance1 {
+  height: 40px;
+}
+
+.verticalclearance2 {
+  height: 70px;
+}
 </style>

@@ -2,6 +2,9 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
+from django.db import transaction
+from dj_rest_auth.registration.serializers import RegisterSerializer
+
 import base64
 from movies.models import Movie
 # from movies.serializers.review import ReviewSerializer
@@ -45,7 +48,23 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 
+class CustomRegisterSerializer(RegisterSerializer):
 
+    image = serializers.CharField()
+
+    # Define transaction.atomic to rollback the save operation in case of error
+    @transaction.atomic
+    def save(self, request):
+        user = super().save(request)
+        user.nickname = request.data.get('nickname')
+        user.image_select = request.data.get('image_select')
+        print(user.image_select)
+        print(user.nickname)
+        # print(request.FILES['image'])
+        # user.image = self.data.get('image')
+        # user.image = request.data['image']
+        user.save()
+        return user
 
 # class DecodeSerializer(serializers.ModelSerializer) :
 

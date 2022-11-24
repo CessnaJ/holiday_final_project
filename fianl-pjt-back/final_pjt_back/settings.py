@@ -189,3 +189,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# REST_AUTH_REGISTER_SERIALIZERS = {
+#     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer'
+# }CustomRegisterSerializer
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+}
+
+REST_AUTH_SERIALIZERS = {
+    # 'USER_DETAILS_SERIALIZER': 'accounts.serializers.UserSerializer'
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.ProfileSerializer'
+    
+}
