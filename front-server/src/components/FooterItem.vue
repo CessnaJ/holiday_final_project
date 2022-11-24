@@ -22,7 +22,7 @@
 
 
 export default {
-  name: 'ArticleList',
+  name: 'FooterItem',
   components: {
     
   },

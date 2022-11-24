@@ -142,7 +142,7 @@ nav a.router-link-exact-active {
 
 <script>
 import SearchBar from '@/components/SearchBar.vue';
-import Footer from '@/components/Footer.vue'
+import Footer from '@/components/FooterItem.vue'
 // import { create } from 'domain';
 
 export default {
