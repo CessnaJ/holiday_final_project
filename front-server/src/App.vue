@@ -1,7 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" class="bgnavy">
+    
     <nav v-if="!isLoggedIn" >
       <!-- 로그인 안된상태 -->
+      <img class="mainimgsize" src="@/assets/chicken.png"/>
       <router-link :to="{ name: 'HomeView' }">
         <span @click="changeSearchingState">Today's Movie</span>
       </router-link> | 
@@ -22,7 +24,8 @@
     </nav>
     <nav v-else>
       <!-- 로그인 된 상태 -->
-      <span>Welcome {{$store.state.nickname}} {{$store.state.image_select}}</span> |
+      <img class="mainimgsize" src="@/assets/chicken.png"/>
+      <span class="hello">Welcome {{$store.state.nickname}}</span> |
       
       <router-link :to="{ name: 'HomeView' }">
         <span @click="changeSearchingState">Today's Movie</span>
@@ -60,12 +63,18 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
 }
 
 nav {
-  padding: 30px;
+  display: flex;
+  align-items: center;
+  /* padding: 30px; */
+  justify-content: space-around;
+  font:bold;
+  font-size: 17px;
+  padding: 30px 25px 20px;
 }
 
 nav a {
@@ -76,6 +85,13 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.hello {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+
 
 .buttonclass {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -98,6 +114,19 @@ nav a.router-link-exact-active {
   height: 50px;
 
 }
+
+.mainimgsize {
+  width: 7rem;
+}
+
+.bgnavy {
+  background-color: #15273E;
+  opacity: 50%;
+  z-index: -1500;
+}
+
+
+
 
 
 </style>

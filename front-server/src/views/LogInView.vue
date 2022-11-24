@@ -1,17 +1,24 @@
 <template>
   <div>
-    <h1>LogIn Page</h1>
+    <div class="flex">
+      <h1 class="navyfont">LogIn Page</h1>
+    </div>
+    
     <div class="verticalclearance"></div>
-    <form @submit.prevent="logIn">
-      <label for="username">username : </label>
-      <input class="inputbox" type="text" id="username" v-model="username"><br>
 
-      <label for="password"> password : </label>
-      <input class="inputbox" type="password" id="password" v-model="password"><br>
+    <div class="flex">
+      <form @submit.prevent="logIn">
+        <label class="inputlabel" for="username">username : </label>
+        <input class="inputbox" type="text" id="username" v-model="username"><br>
 
-      <input class="inputbox" type="submit" value="logIn">
-    </form>
+        <label class="inputlabel" for="password"> password : </label>
+        <input class="inputbox" type="password" id="password" v-model="password"><br>
+
+        <input class="inputbox" type="submit" value="logIn">
+      </form>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -58,4 +65,23 @@ export default {
   height: 45px;
 
 }
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.inputlabel {
+  font-size: 20px;
+  font:bold;
+  color: wheat;
+}
+
+.navyfont {
+  /* color: #15273E; */
+  color: wheat;
+  /* font-size: 30px; */
+  /* font:bold; */
+}
+
 </style>

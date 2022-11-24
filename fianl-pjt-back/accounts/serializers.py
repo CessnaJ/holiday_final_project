@@ -50,7 +50,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class CustomRegisterSerializer(RegisterSerializer):
 
-    image = serializers.CharField()
+    # image = serializers.CharField()
 
     # Define transaction.atomic to rollback the save operation in case of error
     @transaction.atomic

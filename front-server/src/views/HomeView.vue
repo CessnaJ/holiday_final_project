@@ -1,17 +1,21 @@
 <template>
   <div>
-    <h1>Here's trendy movies</h1>
-    <div class="verticalclearance1"></div>
-    <hr>
+    <div >
+      <span class="h1style">Trendy movies</span>
+    </div>
+    <!-- <div class="verticalclearance1"></div> -->
+    <!-- <hr> -->
     <div class="main_movie">
-      <div class="h1location" v-for="(movie, index) in popularmovies" :key="index" >
+      <div class="h1style" v-for="(movie, index) in popularmovies" :key="index" >
       <!-- <p>{{ movie.title }}</p> -->
       <img class="posterbox cursor postersize" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" alt="" @click="movieDetail(movie)">
       </div>
     </div>
+
+
     <div class="verticalclearance1"></div>
-    <h1 class="h1location">Latest Releases </h1>
-    <hr>
+    <span class="h1style">Latest Releases </span>
+    <!-- <hr> -->
     <div class="main_movie">
       <div class="" v-for="(movie, index) in latestmovies" :key="index" >
       <!-- <p>{{ movie.title }}</p> -->
@@ -21,8 +25,8 @@
 
 
     <div class="verticalclearance1"></div>
-    <h1 class="h1location">Recommendation Released in {{year}} </h1>
-    <hr>
+    <span class="h1style">Recommendations Released in {{year}} </span>
+    <!-- <hr> -->
     <div class="main_movie">
       <div class="" v-for="(movie, index) in randomyearmovies" :key="index" >
       <!-- <p>{{ movie.title }}</p> -->
@@ -133,7 +137,7 @@ export default {
 .posterbox {
   /* width: 350px; width가 고정되어 짜부되던걸 수정했습니다. 😀*/
 
-  margin: 0 auto 10px auto;
+  margin: 0 auto 0px auto;
   padding: 10px 20px;
   /* color: white; */
   border-radius: 5px;
@@ -164,10 +168,15 @@ export default {
 }
 
 .verticalclearance1 {
-  height: 30px;
+  height: 40px;
 }
 
-.h1location {
-  margin: left 300px;
+.h1style {
+  margin: left 20px;
+  color: wheat;
+  font-weight: bold;
+  font-size: 30px;
+  /* text-align: ; */
+  /* float: left; */
 }
 </style>
