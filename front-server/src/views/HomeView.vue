@@ -179,4 +179,9 @@ export default {
   /* text-align: ; */
   /* float: left; */
 }
+
+.posterboxeffect {
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25);
+}
 </style>
