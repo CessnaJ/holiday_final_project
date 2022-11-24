@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav v-if="!isLoggedIn">
+    <nav v-if="!isLoggedIn" >
       <!-- 로그인 안된상태 -->
       <router-link :to="{ name: 'HomeView' }">
         <span @click="changeSearchingState">Today's Movie</span>

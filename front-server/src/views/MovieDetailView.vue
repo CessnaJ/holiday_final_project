@@ -14,6 +14,9 @@
       <p>{{movie.genres}}</p>
       <p>{{genre_list}}</p>
       <p>{{movie}}</p>
+
+
+      
     </div>
     
   </div>
