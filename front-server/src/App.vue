@@ -36,7 +36,7 @@
         <span @click="changeSearchingState">My Profile</span>
       </router-link> | 
       <!-- 아래 로그아웃버튼신설 😀 -->
-      <button v-on:click.prevent="signOut()" >
+      <button class="buttonclass" v-on:click.prevent="signOut()" >
         <span @click="changeSearchingState">Sign Out</span>
       </button>
     </nav>
@@ -77,7 +77,7 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 
-button {
+.buttonclass {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -86,7 +86,7 @@ button {
 
   background-color: #4CAF50;
   border: none;
-  color: white;
+  color: black;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;

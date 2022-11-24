@@ -14,7 +14,7 @@
       <label for="password2"> password confirmation : </label>
       <input type="password" id="password2" v-model="password2">
       
-      <label for="image_select"> image_select image_select : </label>
+      <label for="image_select">Select profile image by typing 1-5 : </label>
       <input type="image_select" id="image_select" v-model="image_select">
 
       <input type="submit" value="SignUp">
@@ -59,3 +59,20 @@ export default {
   }
 }
 </script>
+
+<style>
+input {
+  display: block;
+  width: 350px;
+  margin: 20px auto;
+  padding: 10px 45px;
+  /* background: white url("@/assets/search-icon.png") no-repeat 15px center; */
+  background-size: 15px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+</style>

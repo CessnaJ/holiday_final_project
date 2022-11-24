@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" :value="input" @input="input=$event.target.value; getSearchmovies(input)" placeholder="Search Movies by Title" />
+    <input class="searchboxinput" type="text" :value="input" @input="input=$event.target.value; getSearchmovies(input)" placeholder="Search Movies by Title" />
     <!-- <span>{{input}}</span> -->
     <!-- <input type="text" class="searchbox" v-model="input" v-on:input="getSearchmovies(input)" placeholder="Search Movies by Title" /> -->
     <div class="container" v-if="$store.state.issearching">
@@ -130,7 +130,7 @@ export default {
   font-family: "Montserrat", sans-serif;
 }
 
-body {
+.body {
   padding: 20px;
   min-height: 100vh;
   background-color: rgb(234, 242, 255);
@@ -150,12 +150,12 @@ body {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-input {
+.searchboxinput {
   display: block;
   width: 350px;
   margin: 20px auto;
   padding: 10px 45px;
-  /* background: white url("@/assets/search-icon.png") no-repeat 15px center; */
+  background: white url("@/assets/search-icon.png") no-repeat 15px center;
   background-size: 15px 15px;
   font-size: 16px;
   border: none;
