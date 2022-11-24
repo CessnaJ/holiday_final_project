@@ -1,16 +1,19 @@
 <template>
-    <div class="footersize bgcolor flex fontcolor">
-        <div class="fontcolor">
+    <div class="footersize bgcolor align fontwhite">
+        <div class="fontwhite">
+            <p>대전 3반 여러분</p>
+            <p>한학기 동안 즐거웠습니다.</p>
+            <p>열심히 달렸으니 다들 푹 쉬시고,</p>
+            <p>잡페어때 다시 뵙겠습니다.</p>
             <p></p>
-            <p class="fontcolor">김성중</p>
-            <p>황다솔</p>
-            <p>이거</p>
-            <span>나 상처받았음</span>
+            
 
         </div>
 
         <div>
-            <span class="fontcolor">왜 안되는거야?</span>
+            <p>김성중 Github: eon8748@gmail.com</p>
+            <p>황다솔 Github: pinetree-1017@naver.com</p>
+        
         </div>
 
     </div>
@@ -52,8 +55,14 @@ export default {
 }
 
 
-.fontcolor {
+.fontwhite {
     font: white
+}
+
+.align {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 </style>

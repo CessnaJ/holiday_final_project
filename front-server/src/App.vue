@@ -3,45 +3,52 @@
     <div id="app" class="bgnavy bgpadding">
       <nav v-if="!isLoggedIn" >
         <!-- 로그인 안된상태 -->
-        <img class="mainimgsize" src="@/assets/chicken.png"/>
-        <router-link :to="{ name: 'HomeView' }">
-          <span @click="changeSearchingState">Today's Movie</span>
-        </router-link> | 
-        
-        <router-link :to="{ name: 'community' }">
-          <span @click="changeSearchingState">Community</span>
-        </router-link> | 
+        <div class="flex txtalign">
+          <img class="mainimgsize" src="@/assets/chicken.png"/>
+          <router-link :to="{ name: 'HomeView' }">
+            <span class="navrightmargin" @click="changeSearchingState">Today's Movie</span>
+          </router-link> | 
+        </div>
 
-
-        <router-link :to="{ name: 'SignUpView' }">
-          <span @click="changeSearchingState">SignUp</span>
-        </router-link> | 
+        <div class="flex txtalign">
+          <router-link :to="{ name: 'community' }">
+            <span class="navrightmargin" @click="changeSearchingState">Community</span>
+          </router-link> | 
         
-        <router-link :to="{ name: 'LogInView' }">
-          <span @click="changeSearchingState">Log In</span>
-        </router-link> |
-        
+          <router-link :to="{ name: 'SignUpView' }">
+            <span class="navrightmargin" @click="changeSearchingState">SignUp</span>
+          </router-link> | 
+          
+          <router-link :to="{ name: 'LogInView' }">
+            <span class="navrightmargin" @click="changeSearchingState">Log In</span>
+          </router-link> |
+        </div>
       </nav>
+      
       <nav v-else>
         <!-- 로그인 된 상태 -->
-        <img class="mainimgsize" src="@/assets/chicken.png"/>
-        <span class="hello">Welcome {{$store.state.nickname}}</span> |
-        
-        <router-link :to="{ name: 'HomeView' }">
-          <span @click="changeSearchingState">Today's Movie</span>
-        </router-link> |
+        <div class="flex txtalign">
+          <img class="mainimgsize" src="@/assets/chicken.png"/>
+          <span class="hello navrightmargin">Welcome {{$store.state.nickname}}</span> |
+          
+          <router-link :to="{ name: 'HomeView' }">
+            <span class="navrightmargin" @click="changeSearchingState">Today's Movie</span>
+          </router-link> |
+        </div>
 
-        <router-link :to="{ name: 'community' }">
-          <span @click="changeSearchingState">Community</span>
-        </router-link> | 
-        
-        <router-link :to="{ name: 'MyProfileView' }">
-          <span @click="changeSearchingState">My Profile</span>
-        </router-link> | 
-        <!-- 아래 로그아웃버튼신설 😀 -->
-        <button class="buttonclass" v-on:click.prevent="signOut()" >
-          <span @click="changeSearchingState">Sign Out</span>
-        </button>
+        <div class="flex txtalign">
+          <router-link :to="{ name: 'community' }">
+            <span class="navrightmargin" @click="changeSearchingState">Community</span>
+          </router-link> | 
+          
+          <router-link :to="{ name: 'MyProfileView' }">
+            <span @click="changeSearchingState">My Profile</span>
+          </router-link> | 
+          <!-- 아래 로그아웃버튼신설 😀 -->
+          <button class="buttonclass" v-on:click.prevent="signOut()" >
+            <span @click="changeSearchingState">Sign Out</span>
+          </button>
+        </div>
       </nav>
       <SearchBar/>
       
@@ -58,6 +65,21 @@
 </template>
 
 <style>
+
+.txtalign {
+  text-align: center;
+  align-items: center;
+}
+
+
+
+.navrightmargin {
+  /* color: rgb(255, 255, 255); */
+  margin-right: 15px;
+  
+}
+
+
 
 * {
   font-family: "Montserrat", sans-serif;
@@ -81,13 +103,14 @@ nav {
   /* padding: 30px; */
   justify-content: space-around;
   font:bold;
-  font-size: 17px;
+  /* font-size: 17px; */
   padding: 30px 25px 20px;
 }
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  font-size: 23px;
 }
 
 nav a.router-link-exact-active {
@@ -96,7 +119,8 @@ nav a.router-link-exact-active {
 
 .hello {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  size: 20px;
 }
 
 
@@ -108,14 +132,15 @@ nav a.router-link-exact-active {
   text-align: center;
   color: #2c3e50;
 
-  background-color: #4CAF50;
+  /* background-color: #4CAF50; */
   border: none;
-  color: black;
+  color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
+  font: bold;
 }
 
 .verticalclearance {
@@ -125,6 +150,7 @@ nav a.router-link-exact-active {
 
 .mainimgsize {
   width: 7rem;
+  margin-right: 30px;
 }
 
 .bgnavy {

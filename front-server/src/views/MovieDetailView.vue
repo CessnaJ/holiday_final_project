@@ -20,7 +20,7 @@
           <span class="semibiggertext">{{movie.runtime}}</span> <span class="mediumtext"> min</span>
         </div>
 
-        <div class="flex verticalslight">
+        <div class="flex verticalslight" style="justify-content: space-evenly">
           <div>
           <p style="font-size: 50px;">😀</p>
           <p class="mediumtext txtalign">{{movie.vote_count}}</p>
@@ -173,6 +173,7 @@ export default {
 
 .txtalign {
   text-align: center;
+  /* align-items: center; */
 }
 
 .verticalseparation {

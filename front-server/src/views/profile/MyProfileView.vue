@@ -1,26 +1,40 @@
 <template>
   <div class="flex">
     <div class="">
-      <h1 class="bigtxt textcenter">My profile</h1>
+      <h1 class="bigtxt textcenter bigtxtcolor">My profile</h1>
       <img v-if="$store.state.image_select" class="profileimg verticalseperation" :src="require(`@/assets/profile${$store.state.image_select}.png`)" alt="">
       <img v-else class="profileimg verticalseperation" src="@/assets/profile2.png"/>
     </div>
     
     
-    <div class="container">
-      <p class="midtxt">Username: {{$store.state.username}}</p>
-      <p class="midtxt">Nickname: {{$store.state.nickname}}</p>
+    <div class="container textcenter" style="width: 450px">
+      <p class="midtxt marginbottom">Username:   {{$store.state.username}}</p>
+      <p class="midtxt marginbottom">Nickname:   {{$store.state.nickname}}</p>
       <!-- <p>{{$store.state.image_select}}번 이미지를 선택했음.</p> -->
       
-      <div class="horizontaldisplay"></div>
+      <div class="horizontaldisplay">
+        <div class="verticaldisplay">
+          <p class="bigtxt bigtxtcolor">Following</p>
+          <p class="bigtxt bigtxtcolor">1</p>
+        </div>
+        <div class="verticaldisplay">
+          <p class="bigtxt" style="color: wheat">Followers</p>
+          <p class="bigtxt bigtxtcolor">2</p>
+        </div>
+      </div>
+
+
+
+      <div class="horizontaldisplay">
         <div class="verticaldisplay">
           <p class="bigtxt">👍</p>
-          <p class="bigtxt">0</p>
+          <p class="bigtxt bigtxtcolor">0</p>
         </div>
         <div class="verticaldisplay">
-          <p>d</p>
-          <p>d</p>
+          <p class="bigtxt" style="color: green">✔</p>
+          <p class="bigtxt bigtxtcolor">5</p>
         </div>
+      </div>
       <div class="verticaldisplay">
         <p>🏎</p>
       </div>
@@ -66,6 +80,10 @@ export default {
 </script>
 
 <style>
+.marginbottom {
+  margin-bottom: 10px;
+}
+
 .profileimg {
       /* border: 1px solid black; */
       border-radius: 100%;
@@ -79,9 +97,13 @@ export default {
 }
 
 .bigtxt {
-  color: wheat;
+  margin-bottom: 3px;
   font-size: 40px;
   text-align: center;
+}
+
+.bigtxtcolor {
+  color: wheat;
 }
 
 .midtxt {
