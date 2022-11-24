@@ -120,8 +120,8 @@ nav a.router-link-exact-active {
 }
 
 .bgnavy {
-  background-color: #15273E;
-  opacity: 50%;
+  background-color: #13273ef8;
+  /* opacity: 50%; */
   z-index: -1500;
 }
 
