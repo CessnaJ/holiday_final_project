@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div>
-      <div class="page-title">
-        <h2>holiday 커뮤니티</h2>
-      </div>
-      <button @click="goCreate">글 작성</button>
+    <div class="wrap">
+      <button class="btn" @click="goCreate">리뷰 작성하세요</button>
     </div>
     
     <div class="outer">
@@ -18,6 +15,9 @@
 
 <script>
 import CommunityList from '@/components/CommunityList'
+import axios from 'axios'
+
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
     name: 'CommunityView',
@@ -37,27 +37,64 @@ export default {
         getArticles() {
             this.$store.dispatch('getArticles')
         },
-        goCreate() {
-          this.$router.push({name: 'articlecreate'})
-        }
+        goCreate() {            
+            axios({
+              method: 'get',
+              url: `${API_URL}/community/`,
+              headers: {
+                Authorization: `Token ${this.$store.state.token}`
+              }
+            })
+              .then((res) => {
+                console.log(res)
+                this.$router.push({name:'articlecreate'})
+              })
+              .catch((err) => {
+                console.log(err)
+                alert('로그인이 필요한 서비스입니다')
+                this.$router.push({name:'LogInView'})
+              })
+        },
     }
 }
 </script>
 
 <style>
-.page-title {
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-.container {
-  width: 1100px;
-  margin: 0 auto;
-}
 .outer {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
+}
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  width: 250px;
+  height: 45px;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.btn:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }
 
 
