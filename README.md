@@ -1,2 +1,2 @@
 # holiday_final_project
-여기에요 다솔님
+영화 추천 플랫폼 프로젝트입니다.
